@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BézierCurves</title>
+    <style>
+        body {
+
+        }
+        svg{
+            width:300px;
+            height:300px;
+            border: black;
+            border-style: dashed;
+        }
+
+        path{
+            stroke: black;
+            stroke-width: 3;
+            fill:none;
+        }
+
+        text{
+            font-size:10px;
+        }
+
+        text.title{
+            font-size:20px;
+        }
+
+    </style>
+</head>
+<body onload="printDPath()">
+<svg>
+    <text x="10" y="50" class="title" >BezierCurve</text>
+    <path d="M100,150 C100,100 190,100 190,150" id="bc"/>
+    <text x="10" y="250" id="bctext"></text>
+</svg>
+<svg>
+    <text x="10" y="50" class="title">Quadratic BezierCurve</text>
+    <path d="M100,100 q100,0 100,100 M100,100" id="qbc" class="animation"/>
+    <text x="10" y="250" id="qbctext"></text>
+</svg>
+<svg>
+    <text x="10" y="50" class="title">Smooth BezierCurve (S)</text>
+    <path d="M50,150 C50,100 170,100 150,150 S250,200 250,150" id="sbc"/>
+    <text x="10" y="250" id="sbctext"></text>
+</svg>
+<svg>
+    <text x="10" y="50" class="title">Smooth Quadratic BezierCurve (T)</text>
+    <path d="M50,100 Q50,200 150,200 T250,100" id="sqbc"/>
+    <text x="10" y="250" id="sqbctext"></text>
+</svg>
+<script type="text/javascript">
+    function printDPath(){
+        let paths = ["bc","qbc","sbc","sqbc"];
+
+        paths.forEach( val => {
+            document.getElementById(val + "text").textContent = "d: " + document.getElementById(val).getAttribute("d");
+        })
+
+
+    }
+</script>
+
+<a href="BezierCurveAnimated.html">BezierCurveAnimated.html</a></br>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BézierCurves Animated</title>
+    <style>
+        svg{
+            width:300px;
+            height:300px;
+            border: black;
+            border-style: dashed;
+        }
+        path{
+            stroke: black;
+            stroke-width: 3;
+            fill:none;
+        }
+        text{
+            font-size:10px;
+        }
+        text.title{
+            font-size:20px;
+        }
+        #bc{
+            animation: myMove alternate 3s infinite;
+        }
+        #qbc{
+            animation: myRotation alternate 3s infinite;
+
+        }
+        #sbc{
+            animation: turnaround 5s linear infinite;
+        }
+        #sqbc{
+            animation: upDown 3s alternate linear infinite;
+        }
+
+
+        @keyframes  myMove{
+            from {
+                transform: translate(0px,0px);
+            }
+            to {
+                transform: translate(100px,100px);
+            }
+        }
+        @keyframes  myRotation{
+            from {
+                transform: rotate(0deg);
+                transform-origin: 50% 50%;
+            }
+            to{
+                transform: rotate(90deg);
+                transform-origin: 50% 50%;
+            }
+        }
+        @keyframes  turnaround{
+            from {
+                transform: rotate(0deg);
+                transform-origin: 50% 50%;
+            }
+            to{
+                transform: rotate(360deg);
+                transform-origin: 50% 50%;
+            }
+        }
+        @keyframes  upDown{
+            from {
+                d: path("M50,100 Q50,200 150,200 T250,100");
+            }
+            to{
+                d: path("M50,200 Q50,100 150,100 T250,200");
+            }
+        }
+
+    </style>
+</head>
+<body onload="printDPath()">
+<svg viewbox="0 0 300 300">
+    <text x="10" y="50" class="title" >BezierCurve</text>
+    <path d="M100,150 C100,100 190,100 190,150" id="bc"/>
+    <text x="10" y="250" id="bctext"></text>
+</svg>
+<svg>
+    <text x="10" y="50" class="title">Quadratic BezierCurve</text>
+    <path d="M100,100 q100,0 100,100 M100,100" id="qbc" class="animation"/>
+    <text x="10" y="250" id="qbctext"></text>
+</svg>
+<svg>
+    <text x="10" y="50" class="title">Smooth BezierCurve (S)</text>
+    <path d="M50,150 C50,100 170,100 150,150 S250,200 250,150" id="sbc"/>
+    <text x="10" y="250" id="sbctext"></text>
+</svg>
+<svg>
+    <text x="10" y="50" class="title">Smooth Quadratic BezierCurve (T)</text>
+    <path d="M50,100 Q50,200 150,200 T250,100" id="sqbc"/>
+    <text x="10" y="250" id="sqbctext"></text>
+</svg>
+<script type="text/javascript">
+    function printDPath(){
+        let paths = ["bc","qbc","sbc","sqbc"];
+
+        paths.forEach( val => {
+            document.getElementById(val + "text").textContent = "d: " + document.getElementById(val).getAttribute("d");
+        })
+
+    }
+</script>
+<a href="BezierCurve.html">BezierCurve.html</a>
+</body>
+</html>
